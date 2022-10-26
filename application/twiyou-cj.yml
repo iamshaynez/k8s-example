@@ -1,0 +1,53 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: twiyou-cj
+spec:
+  jobTemplate:
+    metadata:
+      name: twiyou-cj
+    spec:
+      template:
+        spec:
+          containers:
+          - image: xiaowenz/twiyou
+            name: twiyou-cj
+            env:
+            - name: DB_PASSWD
+              valueFrom: 
+                configMapKeyRef: 
+                  name: twiyou
+                  key: DB_PASSWD
+            - name: DB_NAME
+              valueFrom: 
+                configMapKeyRef: 
+                  name: twiyou
+                  key: DB_NAME
+            - name: DB_USER
+              valueFrom: 
+                configMapKeyRef: 
+                  name: twiyou
+                  key: DB_USER
+            - name: DB_PORT
+              valueFrom: 
+                configMapKeyRef: 
+                  name: twiyou
+                  key: DB_PORT
+            - name: DB_HOST
+              valueFrom: 
+                configMapKeyRef: 
+                  name: twiyou
+                  key: DB_HOST
+            - name: TWITTER_BEARER_TOKEN
+              valueFrom: 
+                configMapKeyRef: 
+                  name: twiyou
+                  key: TWITTER_BEARER_TOKEN
+            - name: TWITTER_USER_NAME
+              valueFrom: 
+                configMapKeyRef: 
+                  name: twiyou
+                  key: TWITTER_USER_NAME
+          restartPolicy: OnFailure
+  schedule: "*/20 * * * *"
+

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: twiyou
+
+data:
+  DB_PASSWD: 'password'
+  DB_NAME: 'test'
+  DB_USER: 'root'
+  DB_PORT: '4000'
+  DB_HOST: 'gateway01.abc.tidbcloud.com'
+  TWITTER_BEARER_TOKEN: 'yourtwittertoken'
+  TWITTER_USER_NAME: 'youaccount'
+  
